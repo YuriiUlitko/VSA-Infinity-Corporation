@@ -1,10 +1,12 @@
+import { asset } from '../utils/asset';
+
 export const contact = {
   email: 'vsainfinity@gmail.com',
   phone: '(610) 555-0123',
   phoneHref: 'tel:+16105550123'
 };
 
-export const heroImage = "/hero-bathroom.jpg";
+export const heroImage = asset('hero-bathroom.jpg');
 
 
 export const trustItems = [
@@ -20,28 +22,28 @@ export const services = [
   description:
   'Turnkey demolition, drywall, plumbing, tile, lighting, and custom vanity — managed start to finish by one licensed team.',
   tags: ['Demolition', 'Plumbing', 'Tile', 'Lighting', 'Custom vanity'],
-  image: "/service-full-remodel.jpg"
+  image: asset('service-full-remodel.jpg')
 
 },
 {
   title: 'Tub-to-Shower Conversions',
   description: 'Curbless walk-in showers and frameless glass enclosures.',
   tags: [],
-  image: "/service-tub-shower.jpg"
+  image: asset('service-tub-shower.jpg')
 
 },
 {
   title: 'Custom Tile & Flooring',
   description: 'Porcelain, natural stone, and waterproof shower pans.',
   tags: [],
-  image: "/service-flooring.jpg"
+  image: asset('service-flooring.jpg')
 
 },
 {
   title: 'Vanities, Fixtures & Finishes',
   description: 'Modern LED mirrors, faucets, and premium hardware.',
   tags: [],
-  image: "/service-vanity.jpg"
+  image: asset('service-vanity.jpg')
 
 }];
 

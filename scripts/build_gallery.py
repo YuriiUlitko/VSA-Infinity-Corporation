@@ -54,6 +54,8 @@ for category_dir in sorted(photo_root.iterdir()):
 ts_path = root / "src" / "data" / "gallery.ts"
 categories = sorted({item["category"] for item in items})
 lines = [
+    "import { asset } from '../utils/asset';",
+    "",
     "export type GalleryCategory = " + " | ".join(json.dumps(c) for c in categories) + ";",
     "",
     "export type GalleryImage = {",
@@ -67,9 +69,14 @@ lines = [
     + ", ".join(json.dumps(c) for c in categories)
     + "];",
     "",
-    "export const galleryImages: GalleryImage[] = "
+    "const galleryImagesRaw: GalleryImage[] = "
     + json.dumps(items, indent=2)
     + ";",
+    "",
+    "export const galleryImages: GalleryImage[] = galleryImagesRaw.map((img) => ({",
+    "  ...img,",
+    "  src: asset(img.src)",
+    "}));",
     "",
 ]
 ts_path.write_text("\n".join(lines), encoding="utf-8")

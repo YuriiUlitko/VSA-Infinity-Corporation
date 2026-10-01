@@ -1,3 +1,5 @@
+import { asset } from '../utils/asset';
+
 export type GalleryCategory = "Bathroom" | "Floor" | "Walls";
 
 export type GalleryImage = {
@@ -9,7 +11,7 @@ export type GalleryImage = {
 
 export const galleryCategories: Array<'All' | GalleryCategory> = ['All', "Bathroom", "Floor", "Walls"];
 
-export const galleryImages: GalleryImage[] = [
+const galleryImagesRaw: GalleryImage[] = [
   {
     "id": "bathroom-fb_img_1762864408449-jpg",
     "src": "/gallery/bathroom/fb_img_1762864408449-jpg.jpg",
@@ -335,3 +337,8 @@ export const galleryImages: GalleryImage[] = [
     "alt": "Walls project photo"
   }
 ];
+
+export const galleryImages: GalleryImage[] = galleryImagesRaw.map((img) => ({
+  ...img,
+  src: asset(img.src)
+}));
