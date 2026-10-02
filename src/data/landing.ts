@@ -88,6 +88,57 @@ export const serviceAreas = [
 'Norristown',
 'Lansdale'];
 
+/** Pin tip positions as % of public/service-areas-map.png (zoomed crop of photo/map.png). */
+export const serviceAreaPins: { name: string; x: number; y: number }[] = [
+  { name: 'Schwenksville', x: 32.5, y: 8.0 },
+  { name: 'Lansdale', x: 75.3, y: 12.9 },
+  { name: 'Limerick', x: 18.6, y: 16.4 },
+  { name: 'Skippack', x: 47.9, y: 19.1 },
+  { name: 'Worcester', x: 60.5, y: 26.2 },
+  { name: 'Trappe', x: 29.7, y: 27.7 },
+  { name: 'Collegeville', x: 35.3, y: 31.5 },
+  { name: 'Royersford', x: 14.8, y: 32.0 },
+  { name: 'Eagleville', x: 45.7, y: 41.7 },
+  { name: 'Blue Bell', x: 79.5, y: 42.6 },
+  { name: 'Oaks', x: 33.4, y: 49.6 },
+  { name: 'Phoenixville', x: 20.3, y: 49.9 },
+  { name: 'Audubon', x: 40.1, y: 50.6 },
+  { name: 'Norristown', x: 62.0, y: 52.9 },
+  { name: 'King of Prussia', x: 48.6, y: 63.8 },
+];
+
+export const faqs = [
+  {
+    question: 'How much does a bathroom remodel cost?',
+    answer:
+      'Every project is different, so we provide a written fixed quote after an in-home consultation. That way you know the full scope and price before work begins — no hourly surprises.',
+  },
+  {
+    question: 'How long does a typical project take?',
+    answer:
+      'Most full bathroom remodels finish in about 1–3 weeks once work starts, depending on size, tile choices, and plumbing or electrical updates. We’ll give you a clear timeline with your quote.',
+  },
+  {
+    question: 'Do I need to move out while you work?',
+    answer:
+      'Usually not. We protect floors and living areas, clean up daily, and keep the rest of your home usable. We’ll walk you through access and daily schedule before we start.',
+  },
+  {
+    question: 'Are you licensed and insured?',
+    answer:
+      'Yes. VSA Infinity Corporation is a licensed and fully insured home improvement contractor serving Montgomery and Chester Counties in Pennsylvania.',
+  },
+  {
+    question: 'What areas do you serve?',
+    answer:
+      'We remodel bathrooms across Montgomery and Chester Counties — including Collegeville, Phoenixville, King of Prussia, Blue Bell, Lansdale, and nearby towns. Don’t see yours? Ask us; we likely cover it.',
+  },
+  {
+    question: 'Is the estimate really free?',
+    answer:
+      'Yes. Your in-home consultation and written estimate are free and non-binding. Final pricing is confirmed in the fixed quote before we begin.',
+  },
+];
 
 /** Real Google reviews from John's Handyman House Repair (maps.app.goo.gl/YjVqysEeC6zPWBh27) */
 export const testimonials = [

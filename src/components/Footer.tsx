@@ -1,13 +1,30 @@
 import React from 'react';
+import { contact } from '../data/landing';
 
 export function Footer() {
   return (
     <footer className="w-full bg-graphite text-white/70">
       <div className="mx-auto max-w-7xl px-5 py-12 md:px-8">
         <div className="flex flex-col justify-between gap-8 border-b border-white/10 pb-8 md:flex-row md:items-start">
-          <p className="font-display text-sm font-extrabold uppercase tracking-wider text-white">
-            VSA Infinity Corporation
-          </p>
+          <div>
+            <p className="font-display text-sm font-extrabold uppercase tracking-wider text-white">
+              VSA Infinity Corporation
+            </p>
+            <div className="mt-4 flex flex-col gap-1.5 text-sm text-white/70">
+              <a
+                href={`mailto:${contact.email}`}
+                className="transition-colors duration-150 hover:text-white"
+              >
+                {contact.email}
+              </a>
+              <a
+                href={contact.phoneHref}
+                className="transition-colors duration-150 hover:text-white"
+              >
+                {contact.phone}
+              </a>
+            </div>
+          </div>
           <p className="max-w-2xl text-xs leading-relaxed text-white/60">
             VSA Infinity Corporation is a licensed and fully insured home improvement contractor serving Montgomery
             and Chester Counties, Pennsylvania. Estimates and consultations are free and non-binding; final pricing
@@ -27,6 +44,6 @@ export function Footer() {
           </nav>
         </div>
       </div>
-    </footer>);
-
+    </footer>
+  );
 }

@@ -6,6 +6,7 @@ import { Services } from './components/Services';
 import { Process } from './components/Process';
 import { ServiceAreas } from './components/ServiceAreas';
 import { Testimonials } from './components/Testimonials';
+import { Faq } from './components/Faq';
 import { EstimateForm } from './components/EstimateForm/EstimateForm';
 import { Footer } from './components/Footer';
 
@@ -20,6 +21,7 @@ export function App() {
         <Process />
         <ServiceAreas />
         <Testimonials />
+        <Faq />
         <EstimateForm />
       </main>
       <Footer />

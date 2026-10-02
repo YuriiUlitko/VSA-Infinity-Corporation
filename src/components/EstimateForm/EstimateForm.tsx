@@ -9,7 +9,7 @@ import { AnimatedHeading } from '../AnimatedHeading';
 const ease = [0.23, 1, 0.32, 1] as const;
 
 export function EstimateForm() {
-  const { values, errors, status, setField, handleSubmit, reset } = useEstimateForm();
+  const { values, errors, status, submitError, setField, handleSubmit, reset } = useEstimateForm();
   const describedBy = (field: string) => errors[field as keyof typeof errors] ? `${field}-error` : undefined;
 
   return (
@@ -179,7 +179,25 @@ export function EstimateForm() {
                   
                   </FormField>
 
+                  <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      id="website"
+                      name="website"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={values.website}
+                      onChange={(e) => setField('website', e.target.value)}
+                    />
+                  </div>
+
                   <div className="sm:col-span-2">
+                    {status === 'error' && submitError &&
+                      <p role="alert" className="mb-4 text-sm text-red-700">
+                        {submitError}
+                      </p>
+                    }
                     <button
                     type="submit"
                     disabled={status === 'submitting'}

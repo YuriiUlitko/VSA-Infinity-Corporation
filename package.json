@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "preview": "npx vite preview",
     "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types",
     "pages:deploy": "npm run build && wrangler pages deploy dist --project-name=vsa-infinity-corporation"
   },
   "dependencies": {

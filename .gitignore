@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+worker-configuration.d.ts
+.wrangler/
 
 # Original camera assets (web copies live in public/gallery)
 photo/
