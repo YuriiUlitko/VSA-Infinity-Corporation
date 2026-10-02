@@ -142,7 +142,16 @@ export function Testimonials() {
             What homeowners say
           </h2>
           <p className="max-w-md text-base leading-relaxed text-body">
-            Real Google reviews from homeowners we’ve worked with.
+            Real{' '}
+            <a
+              href="https://maps.app.goo.gl/YjVqysEeC6zPWBh27?g_st=ac"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-pine underline decoration-pine/30 underline-offset-2 transition-colors hover:decoration-pine">
+              
+              Google reviews
+            </a>{' '}
+            from homeowners we’ve worked with.
           </p>
         </div>
 

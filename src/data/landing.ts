@@ -2,8 +2,8 @@ import { asset } from '../utils/asset';
 
 export const contact = {
   email: 'vsainfinity@gmail.com',
-  phone: '(610) 555-0123',
-  phoneHref: 'tel:+16105550123'
+  phone: '(267) 903-9999',
+  phoneHref: 'tel:+12679039999'
 };
 
 export const heroImage = asset('hero-bathroom.jpg');
@@ -28,21 +28,21 @@ export const services = [
 {
   title: 'Tub-to-Shower Conversions',
   description: 'Curbless walk-in showers and frameless glass enclosures.',
-  tags: [],
+  tags: ['Demo & removal', 'Waterproofing', 'Tile', 'Glass enclosure', 'Fixtures'],
   image: asset('service-tub-shower.jpg')
 
 },
 {
   title: 'Custom Tile & Flooring',
   description: 'Porcelain, natural stone, and waterproof shower pans.',
-  tags: [],
+  tags: ['Porcelain', 'Natural stone', 'Mosaic', 'Shower pans', 'Heated floors'],
   image: asset('service-flooring.jpg')
 
 },
 {
   title: 'Vanities, Fixtures & Finishes',
   description: 'Modern LED mirrors, faucets, and premium hardware.',
-  tags: [],
+  tags: ['Vanities', 'LED mirrors', 'Faucets', 'Hardware', 'Lighting'],
   image: asset('service-vanity.jpg')
 
 }];

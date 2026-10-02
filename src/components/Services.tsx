@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
+import { EyeIcon } from 'lucide-react';
 import { services } from '../data/landing';
 import { GalleryModal } from './GalleryModal';
 import type { GalleryCategory } from '../data/gallery';
+
+function SeeMoreLabel() {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-ink shadow-sm">
+      <EyeIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+      See more photos
+    </span>);
+
+}
 
 function PhotoHoverTrigger({
   src,
@@ -27,11 +37,75 @@ function PhotoHoverTrigger({
         className={`h-full w-full object-cover transition-[filter,transform] duration-300 ease-out group-hover:scale-[1.02] group-hover:blur-[3px] group-focus-visible:blur-[3px] ${imgClassName ?? ''}`} />
       
       <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-300 group-hover:bg-ink/35 group-hover:opacity-100 group-focus-visible:bg-ink/35 group-focus-visible:opacity-100">
-        <span className="rounded-sm bg-white px-4 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-ink shadow-sm">
-          See more photos
-        </span>
+        <SeeMoreLabel />
       </span>
     </button>);
+
+}
+
+function CompactServiceCard({
+  title,
+  description,
+  tags,
+  image,
+  onOpen
+
+
+
+
+}: {title: string;description: string;tags: string[];image: string;onOpen: () => void;}) {
+  return (
+    <>
+      {/* Mobile: stacked like the featured card */}
+      <article className="flex flex-col overflow-hidden rounded-sm border border-line bg-white lg:hidden">
+        <PhotoHoverTrigger
+          src={image}
+          alt=""
+          imgClassName="aspect-[16/10] w-full"
+          onOpen={onOpen} />
+        
+        <div className="flex flex-1 flex-col p-6 md:p-7">
+          <h3 className="font-display text-xl font-extrabold uppercase tracking-wider text-ink">{title}</h3>
+          <p className="mt-3 text-base leading-relaxed text-body">{description}</p>
+          {tags.length > 0 &&
+          <ul className="mt-auto flex flex-wrap gap-2 pt-6">
+              {tags.map((tag) =>
+            <li key={tag} className="rounded-sm bg-sage px-3 py-1.5 text-xs font-medium text-pine">
+                  {tag}
+                </li>
+            )}
+            </ul>
+          }
+        </div>
+      </article>
+
+      {/* Desktop: side image that expands on photo hover */}
+      <article className="relative hidden min-h-[150px] overflow-hidden rounded-sm border border-line bg-white lg:block">
+        <div className="grid h-full min-h-[150px] grid-cols-[180px_1fr]">
+          <div className="bg-alabaster" aria-hidden="true" />
+          <div className="flex flex-col justify-center p-5 md:p-6">
+            <h3 className="font-display text-base font-bold uppercase tracking-wider text-ink">{title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-body">{description}</p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={onOpen}
+          aria-label={`See more photos for ${title}`}
+          className="group absolute inset-y-0 left-0 z-10 w-[180px] overflow-hidden transition-[width] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:w-full focus:outline-none focus-visible:w-full focus-visible:ring-2 focus-visible:ring-pine focus-visible:ring-inset">
+          
+          <img
+            src={image}
+            alt=""
+            className="h-full w-full object-cover transition-[filter] duration-300 delay-150 ease-out group-hover:blur-[3px] group-focus-visible:blur-[3px]" />
+          
+          <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-300 delay-200 group-hover:bg-ink/35 group-hover:opacity-100 group-focus-visible:bg-ink/35 group-focus-visible:opacity-100">
+            <SeeMoreLabel />
+          </span>
+        </button>
+      </article>
+    </>);
 
 }
 
@@ -93,23 +167,14 @@ export function Services() {
               'All';
 
               return (
-                <article
+                <CompactServiceCard
                   key={service.title}
-                  className="grid grid-cols-[120px_1fr] overflow-hidden rounded-sm border border-line bg-white sm:grid-cols-[180px_1fr]">
-                  
-                  <PhotoHoverTrigger
-                    src={service.image}
-                    alt=""
-                    className="h-full min-h-[150px]"
-                    onOpen={() => openGallery(category)} />
-                  
-                  <div className="flex flex-col justify-center p-5 md:p-6">
-                    <h3 className="font-display text-base font-bold uppercase tracking-wider text-ink">
-                      {service.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-body">{service.description}</p>
-                  </div>
-                </article>);
+                  title={service.title}
+                  description={service.description}
+                  tags={service.tags}
+                  image={service.image}
+                  onOpen={() => openGallery(category)} />
+              );
 
             })}
           </div>

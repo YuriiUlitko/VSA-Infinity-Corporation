@@ -99,7 +99,7 @@ export function EstimateForm() {
                     id="phone"
                     type="tel"
                     autoComplete="tel"
-                    placeholder="(610) 555-0123"
+                    placeholder="(267) 903-9999"
                     value={values.phone}
                     onChange={(e) => setField('phone', e.target.value)}
                     aria-invalid={!!errors.phone}
