@@ -29,7 +29,7 @@ function PhotoHoverTrigger({
     <button
       type="button"
       onClick={onOpen}
-      aria-label="See more photos"
+      aria-label={`See more photos for ${alt || 'this project'}`}
       className={`group relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-pine focus-visible:ring-offset-2 ${className ?? ''}`}>
       
       <img
@@ -61,7 +61,7 @@ function CompactServiceCard({
       <article className="flex flex-col overflow-hidden rounded-sm border border-line bg-white lg:hidden">
         <PhotoHoverTrigger
           src={image}
-          alt=""
+          alt={`${title} — bathroom project photo`}
           imgClassName="aspect-[16/10] w-full"
           onOpen={onOpen} />
         
@@ -98,7 +98,7 @@ function CompactServiceCard({
           
           <img
             src={image}
-            alt=""
+            alt={`${title} — bathroom project photo`}
             className="h-full w-full object-cover transition-[filter] duration-300 delay-150 ease-out group-hover:blur-[3px] group-focus-visible:blur-[3px]" />
           
           <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-300 delay-200 group-hover:bg-ink/35 group-hover:opacity-100 group-focus-visible:bg-ink/35 group-focus-visible:opacity-100">
