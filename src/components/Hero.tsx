@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRightIcon } from 'lucide-react';
 import { heroImage } from '../data/landing';
+import { AnimatedHeading } from './AnimatedHeading';
 
 export function Hero() {
   return (
@@ -34,9 +35,13 @@ export function Hero() {
             Montgomery &amp; Chester Counties, PA
           </span>
 
-          <h1 className="mt-5 font-display text-[34px] font-extrabold uppercase leading-[1.02] tracking-wide text-ink sm:mt-7 sm:text-5xl xl:text-[64px]">
+          <AnimatedHeading
+            as="h1"
+            duration={1.1}
+            className="mt-5 font-display text-[34px] font-extrabold uppercase leading-[1.02] tracking-wide text-ink sm:mt-7 sm:text-5xl xl:text-[64px]">
+            
             Transform your bathroom into a <span className="text-pine">modern oasis</span>
-          </h1>
+          </AnimatedHeading>
 
           <p className="mt-4 max-w-xl text-base leading-relaxed text-body sm:mt-6 md:text-lg">
             Turnkey bathroom renovations and precision tub-to-shower conversions. Fixed quotes, licensed
@@ -73,9 +78,9 @@ export function Hero() {
 
         {/* Desktop photo */}
         <motion.figure
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+          initial={{ opacity: 0, x: 48 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.85, ease: [0.23, 1, 0.32, 1] }}
           className="relative hidden lg:col-span-6 lg:block">
           
           <div className="overflow-hidden rounded-sm border border-line bg-alabaster">

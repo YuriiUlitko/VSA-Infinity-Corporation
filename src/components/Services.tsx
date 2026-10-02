@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { EyeIcon } from 'lucide-react';
 import { services } from '../data/landing';
 import { GalleryModal } from './GalleryModal';
+import { AnimatedHeading } from './AnimatedHeading';
 import type { GalleryCategory } from '../data/gallery';
 
 function SeeMoreLabel() {
@@ -123,9 +124,9 @@ export function Services() {
     <section id="services" className="w-full bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex flex-col justify-between gap-6 border-b border-line pb-10 md:flex-row md:items-end">
-          <h2 className="max-w-xl font-display text-3xl font-extrabold uppercase leading-tight tracking-wider text-ink md:text-4xl">
+          <AnimatedHeading className="max-w-xl font-display text-3xl font-extrabold uppercase leading-tight tracking-wider text-ink md:text-4xl">
             Complete bathroom services
-          </h2>
+          </AnimatedHeading>
           <p className="max-w-md text-base leading-relaxed text-body">
             Every trade under one contract — so your project stays on scope, on schedule, and on budget.
           </p>

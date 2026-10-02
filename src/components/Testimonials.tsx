@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from 'lucide-react';
 import { testimonials, testimonialSlides } from '../data/landing';
+import { AnimatedHeading } from './AnimatedHeading';
 
 /** Soft trim for the longest featured quotes so the green card stays readable. */
 const FEATURED_LIMIT = 320;
@@ -138,9 +139,9 @@ export function Testimonials() {
     <section id="feedback" className="w-full border-t border-line bg-alabaster py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex flex-col justify-between gap-6 border-b border-line pb-10 md:flex-row md:items-end">
-          <h2 className="max-w-xl font-display text-3xl font-extrabold uppercase leading-tight tracking-wider text-ink md:text-4xl">
+          <AnimatedHeading className="max-w-xl font-display text-3xl font-extrabold uppercase leading-tight tracking-wider text-ink md:text-4xl">
             What homeowners say
-          </h2>
+          </AnimatedHeading>
           <p className="max-w-md text-base leading-relaxed text-body">
             Real{' '}
             <a

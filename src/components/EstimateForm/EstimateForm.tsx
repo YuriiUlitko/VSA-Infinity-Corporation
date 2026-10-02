@@ -4,6 +4,7 @@ import { CheckIcon, Loader2Icon, MailIcon, PhoneIcon } from 'lucide-react';
 import { FormField, inputClass } from '../FormField';
 import { useEstimateForm } from './useEstimateForm';
 import { contact, serviceTypes } from '../../data/landing';
+import { AnimatedHeading } from '../AnimatedHeading';
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -16,9 +17,9 @@ export function EstimateForm() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid overflow-hidden rounded-sm border border-line bg-white lg:grid-cols-12">
           <div className="flex flex-col border-b border-line p-8 md:p-12 lg:col-span-5 lg:border-b-0 lg:border-r">
-            <h2 className="font-display text-3xl font-extrabold uppercase leading-tight tracking-wider text-ink md:text-4xl">
+            <AnimatedHeading className="font-display text-3xl font-extrabold uppercase leading-tight tracking-wider text-ink md:text-4xl">
               Ready to upgrade your bathroom?
-            </h2>
+            </AnimatedHeading>
             <p className="mt-4 text-base leading-relaxed text-body">
               Fill out the form below to schedule your free in-home consultation and estimate.
             </p>
