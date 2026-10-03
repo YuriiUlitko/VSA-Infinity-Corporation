@@ -40,7 +40,7 @@ export function Hero() {
             duration={1.1}
             className="mt-5 font-display text-[34px] font-extrabold uppercase leading-[1.02] tracking-wide text-ink sm:mt-7 sm:text-5xl xl:text-[64px]">
             
-            Transform your bathroom into a <span className="text-pine">modern oasis</span>
+            We turn dreams into <span className="text-pine">reality</span>
           </AnimatedHeading>
 
           <p className="mt-4 max-w-xl text-base leading-relaxed text-body sm:mt-6 md:text-lg">
