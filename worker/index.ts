@@ -97,11 +97,26 @@ async function handleEstimate(request: Request, env: Env): Promise<Response> {
   `;
 
   try {
+    if (!env.ESTIMATE_TO || !env.ESTIMATE_FROM_EMAIL) {
+      console.error('EMAIL config missing', {
+        hasTo: Boolean(env.ESTIMATE_TO),
+        hasFrom: Boolean(env.ESTIMATE_FROM_EMAIL),
+      });
+      return json(
+        {
+          ok: false,
+          error:
+            'Unable to send your request right now. Please try again or email us directly.',
+        },
+        502,
+      );
+    }
+
     await env.EMAIL.send({
       to: env.ESTIMATE_TO,
       from: {
         email: env.ESTIMATE_FROM_EMAIL,
-        name: env.ESTIMATE_FROM_NAME,
+        name: env.ESTIMATE_FROM_NAME || 'VSA Infinity',
       },
       replyTo: email,
       subject,
@@ -109,8 +124,16 @@ async function handleEstimate(request: Request, env: Env): Promise<Response> {
       html,
     });
   } catch (err) {
-    console.error('EMAIL.send failed', err);
-    return json({ ok: false, error: 'Unable to send your request right now. Please try again or email us directly.' }, 502);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('EMAIL.send failed', message, err);
+    return json(
+      {
+        ok: false,
+        error:
+          'Unable to send your request right now. Please try again or email us directly.',
+      },
+      502,
+    );
   }
 
   return json({ ok: true });
