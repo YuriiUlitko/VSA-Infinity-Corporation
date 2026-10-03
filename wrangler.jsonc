@@ -11,7 +11,7 @@
   "send_email": [{ "name": "EMAIL" }],
   "vars": {
     "ESTIMATE_TO": "ulitkoura000@gmail.com",
-    "ESTIMATE_FROM_EMAIL": "forms@tableflow.space",
+    "ESTIMATE_FROM_EMAIL": "forms@vsainfinity.com",
     "ESTIMATE_FROM_NAME": "VSA Infinity"
   }
 }
