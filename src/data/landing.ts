@@ -3,8 +3,11 @@ import { asset } from '../utils/asset';
 export const contact = {
   email: 'vsainfinity@gmail.com',
   phone: '(267) 903-9999',
-  phoneHref: 'tel:+12679039999'
+  phoneHref: 'tel:+12679039999',
+  /** Opens WhatsApp chat with this US number */
+  whatsappHref: 'https://wa.me/12679039999',
 };
+
 
 export const heroImage = asset('hero-bathroom.jpg');
 

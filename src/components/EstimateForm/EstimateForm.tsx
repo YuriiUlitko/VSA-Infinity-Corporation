@@ -1,10 +1,11 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CheckIcon, Loader2Icon, MailIcon, PhoneIcon } from 'lucide-react';
+import { CheckIcon, Loader2Icon, MailIcon } from 'lucide-react';
 import { FormField, inputClass } from '../FormField';
 import { useEstimateForm } from './useEstimateForm';
 import { contact, serviceTypes } from '../../data/landing';
 import { AnimatedHeading } from '../AnimatedHeading';
+import { WhatsAppIcon } from '../WhatsAppIcon';
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -31,9 +32,15 @@ export function EstimateForm() {
                 </span>
                 {contact.email}
               </a>
-              <a href={contact.phoneHref} className="flex items-center gap-3 text-sm text-ink hover:text-pine">
+              <a
+                href={contact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`WhatsApp ${contact.phone}`}
+                className="flex items-center gap-3 text-sm text-ink hover:text-pine"
+              >
                 <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-sage">
-                  <PhoneIcon className="h-4 w-4 text-pine" aria-hidden="true" />
+                  <WhatsAppIcon className="h-4 w-4 text-pine" />
                 </span>
                 {contact.phone}
               </a>

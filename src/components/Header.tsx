@@ -1,6 +1,7 @@
 import React from 'react';
-import { MailIcon, PhoneIcon } from 'lucide-react';
+import { MailIcon } from 'lucide-react';
 import { contact } from '../data/landing';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export function Header() {
   return (
@@ -17,32 +18,46 @@ export function Header() {
           </span>
         </a>
 
-        <div className="flex items-center gap-8">
-          <div className="hidden items-center gap-6 text-sm text-body lg:flex">
+        <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
+          <div className="hidden items-center gap-5 text-sm text-body lg:flex">
             <a
               href={`mailto:${contact.email}`}
-              className="flex items-center gap-2 transition-colors duration-150 hover:text-pine">
-              
+              className="flex items-center gap-2 transition-colors duration-150 hover:text-pine"
+            >
               <MailIcon className="h-4 w-4 text-pine" aria-hidden="true" />
               {contact.email}
             </a>
             <span className="h-4 w-px bg-line" aria-hidden="true" />
             <a
-              href={contact.phoneHref}
-              className="flex items-center gap-2 transition-colors duration-150 hover:text-pine">
-              
-              <PhoneIcon className="h-4 w-4 text-pine" aria-hidden="true" />
+              href={contact.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`WhatsApp ${contact.phone}`}
+              className="flex items-center gap-2 transition-colors duration-150 hover:text-pine"
+            >
+              <WhatsAppIcon className="h-4 w-4 text-pine" />
               {contact.phone}
             </a>
           </div>
+
+          <a
+            href={contact.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat on WhatsApp"
+            className="flex h-10 w-10 items-center justify-center rounded-sm text-pine transition-colors duration-150 hover:bg-sage lg:hidden"
+          >
+            <WhatsAppIcon className="h-5 w-5" />
+          </a>
+
           <a
             href="#estimate"
-            className="whitespace-nowrap rounded-sm bg-pine px-4 py-2.5 font-display text-[11px] font-bold uppercase tracking-wider text-white transition-colors duration-150 hover:bg-pine-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-pine focus-visible:ring-offset-2 md:px-5 md:py-3 md:text-xs">
-            
+            className="whitespace-nowrap rounded-sm bg-pine px-4 py-2.5 font-display text-[11px] font-bold uppercase tracking-wider text-white transition-colors duration-150 hover:bg-pine-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-pine focus-visible:ring-offset-2 md:px-5 md:py-3 md:text-xs"
+          >
             Get Free Estimate
           </a>
         </div>
       </div>
-    </header>);
-
+    </header>
+  );
 }

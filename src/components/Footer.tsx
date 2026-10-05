@@ -1,5 +1,6 @@
 import React from 'react';
 import { contact } from '../data/landing';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 export function Footer() {
   return (
@@ -18,10 +19,13 @@ export function Footer() {
                 {contact.email}
               </a>
               <a
-                href={contact.phoneHref}
-                className="transition-colors duration-150 hover:text-white"
+                href={contact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
               >
-                {contact.phone}
+                <WhatsAppIcon className="h-4 w-4" />
+                WhatsApp
               </a>
             </div>
           </div>
