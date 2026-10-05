@@ -73,6 +73,29 @@ export const steps = [
   description: 'We review every detail together and don’t sign off until you’re fully satisfied.'
 }];
 
+export const remodelReasons = [
+  {
+    title: 'Create Comfort',
+    description:
+      'Transform your bathroom into a rejuvenating spa retreat — a place built for genuine relaxation rather than daily compromise.',
+  },
+  {
+    title: 'Enhance Safety',
+    description:
+      'Eliminate slipping hazards by trading traditional tubs for seamless walk-in showers and subtle grab bars designed for effortless accessibility.',
+  },
+  {
+    title: 'Save Water and Energy',
+    description:
+      'High-efficiency fixtures drastically curb resource waste while shrinking monthly bills — a modern toilet upgrade alone can preserve around 13,000 gallons each year.',
+  },
+  {
+    title: 'Maximize Property Equity',
+    description:
+      'Remodeling your bath stands as one of the highest-yield home projects, consistently returning 60% to 70% of its initial cost upon resale.',
+  },
+];
+
 
 export const serviceAreas = [
 'Collegeville',
