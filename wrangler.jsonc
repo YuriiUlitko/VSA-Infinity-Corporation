@@ -12,6 +12,10 @@
   "vars": {
     "ESTIMATE_TO": "ulitkoura000@gmail.com",
     "ESTIMATE_FROM_EMAIL": "forms@vsainfinity.com",
-    "ESTIMATE_FROM_NAME": "VSA Infinity"
+    "ESTIMATE_FROM_NAME": "VSA Infinity",
+    // After deploying scripts/estimate-sheet-webhook.gs as a Web app, paste its URL here.
+    // Swap sheets later by changing SPREADSHEET_ID in the Apps Script, or this webhook URL.
+    "ESTIMATE_SHEET_WEBHOOK": "https://script.google.com/macros/s/AKfycbygHgFzDYDlIF37qOm9S0Y2_fGTEo7PDu0cZNSCVySUAYrbEecEhsOXJmqNWKsO2A23/exec",
+    "ESTIMATE_SHEET_SECRET": ""
   }
 }
