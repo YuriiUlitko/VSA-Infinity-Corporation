@@ -15,7 +15,7 @@
     "ESTIMATE_FROM_NAME": "VSA Infinity",
     // After deploying scripts/estimate-sheet-webhook.gs as a Web app, paste its URL here.
     // Swap sheets later by changing SPREADSHEET_ID in the Apps Script, or this webhook URL.
-    "ESTIMATE_SHEET_WEBHOOK": "https://script.google.com/macros/s/AKfycbygHgFzDYDlIF37qOm9S0Y2_fGTEo7PDu0cZNSCVySUAYrbEecEhsOXJmqNWKsO2A23/exec",
+    "ESTIMATE_SHEET_WEBHOOK": "https://script.google.com/macros/s/AKfycbwbW4fhoPnqXW1av1xvj2xxbbtnNAT0aZ47iMcnGqvnjZ1gd-nEbFhR8WKLqNgC3bTJ/exec",
     "ESTIMATE_SHEET_SECRET": ""
   }
 }
