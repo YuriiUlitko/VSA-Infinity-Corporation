@@ -3,11 +3,20 @@ import { MailIcon } from 'lucide-react';
 import { contact } from '../data/landing';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
+function isHomePath(pathname: string) {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  return path === '/';
+}
+
 export function Header() {
+  const onHome = typeof window === 'undefined' || isHomePath(window.location.pathname);
+  const homeHref = onHome ? '#top' : '/';
+  const estimateHref = onHome ? '#estimate' : '/#estimate';
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-line bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 md:h-20 md:px-8">
-        <a href="#top" className="flex items-center whitespace-nowrap" aria-label="VSA Infinity Corporation home">
+        <a href={homeHref} className="flex items-center whitespace-nowrap" aria-label="VSA Infinity Corporation home">
           <span className="flex flex-col items-end leading-none text-ink">
             <span className="font-display text-base font-extrabold uppercase tracking-[0.04em] sm:text-lg">
               VSA Infinity
@@ -51,7 +60,7 @@ export function Header() {
           </a>
 
           <a
-            href="#estimate"
+            href={estimateHref}
             className="whitespace-nowrap rounded-sm bg-pine px-4 py-2.5 font-display text-[11px] font-bold uppercase tracking-wider text-white transition-colors duration-150 hover:bg-pine-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-pine focus-visible:ring-offset-2 md:px-5 md:py-3 md:text-xs"
           >
             Get Free Estimate

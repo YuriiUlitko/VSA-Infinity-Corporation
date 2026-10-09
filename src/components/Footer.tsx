@@ -39,10 +39,10 @@ export function Footer() {
         <div className="flex flex-col gap-4 pt-8 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 VSA Infinity Corporation. All rights reserved.</p>
           <nav aria-label="Legal" className="flex gap-6">
-            <a href="#" className="transition-colors duration-150 hover:text-white">
+            <a href="/privacy" className="transition-colors duration-150 hover:text-white">
               Privacy Policy
             </a>
-            <a href="#" className="transition-colors duration-150 hover:text-white">
+            <a href="/terms" className="transition-colors duration-150 hover:text-white">
               Terms
             </a>
           </nav>

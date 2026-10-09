@@ -219,6 +219,17 @@ export function EstimateForm() {
                     'Claim Your Free Estimate'
                     }
                     </button>
+                    <p className="mt-3 text-center text-[11px] leading-relaxed text-muted">
+                      By submitting this form, you agree to our{' '}
+                      <a href="/terms" className="underline underline-offset-2 hover:text-pine">
+                        Terms of Use
+                      </a>{' '}
+                      and{' '}
+                      <a href="/privacy" className="underline underline-offset-2 hover:text-pine">
+                        Privacy Policy
+                      </a>
+                      .
+                    </p>
                     <p className="mt-4 text-center text-sm text-body">
                       Or email us directly at{' '}
                       <a href={`mailto:${contact.email}`} className="font-medium text-pine underline underline-offset-4">

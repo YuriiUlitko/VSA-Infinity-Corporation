@@ -1,28 +1,31 @@
 /**
  * Google Apps Script webhook — appends estimate form rows to a spreadsheet.
  *
- * SETUP (once):
- * 1. Open the target Google Sheet
+ * SETUP on the TARGET sheet (the one that should receive rows):
+ * 1. Open THAT Google Sheet
  * 2. Extensions → Apps Script
- * 3. Paste this file, set CONFIG below
- * 4. Deploy → New deployment → Type: Web app
+ * 3. Paste this file (leave SPREADSHEET_ID empty to use this bound sheet)
+ * 4. Deploy → New deployment → Web app
  *    - Execute as: Me
  *    - Who has access: Anyone
- * 5. Copy the Web app URL into Cloudflare Worker var ESTIMATE_SHEET_WEBHOOK
- *    (and matching ESTIMATE_SHEET_SECRET if you set SHARED_SECRET here)
+ * 5. Copy the Web app URL → Cloudflare var ESTIMATE_SHEET_WEBHOOK
  *
- * TO SWITCH TO ANOTHER SHEET later:
- * - Change CONFIG.SPREADSHEET_ID below and Save (no Worker changes), OR
- * - Paste this script into the new sheet, leave SPREADSHEET_ID empty,
- *   redeploy the web app, and update ESTIMATE_SHEET_WEBHOOK in Cloudflare.
+ * TO SWITCH SHEETS:
+ * - Open the new sheet → paste this script there (SPREADSHEET_ID empty) →
+ *   Deploy → New deployment → update ESTIMATE_SHEET_WEBHOOK
+ * - OR set SPREADSHEET_ID to the new file ID and Save (same deployment may work)
+ *
+ * If executions increase but the sheet looks empty: you are likely looking at a
+ * different spreadsheet, or a different tab — check the JSON response fields
+ * spreadsheetId / sheetName / url.
  */
 
 const CONFIG = {
-  // Spreadsheet from the shared link (change this to retarget another file)
-  SPREADSHEET_ID: '1AaD7BpUBSuxhsEJqy_S3WyH_LGIfYD3cc4JuDNW3CVg',
-  // Tab name — created automatically with headers if missing
-  SHEET_NAME: 'Requests',
-  // Optional: must match Worker var ESTIMATE_SHEET_SECRET when non-empty
+  // Target spreadsheet (from the sheet URL between /d/ and /edit).
+  // VSA infinity - Leads:
+  SPREADSHEET_ID: '1DluY1EOsbufpZBp1zkkMJZaAKyAkgoe60oBr0Cgtpr4',
+  // Leave EMPTY to use the first sheet/tab (Аркуш1).
+  SHEET_NAME: '',
   SHARED_SECRET: '',
 };
 
@@ -35,7 +38,8 @@ function doPost(e) {
       return json_({ ok: false, error: 'Unauthorized' });
     }
 
-    const sheet = getTargetSheet_();
+    const ss = getSpreadsheet_();
+    const sheet = getTargetSheet_(ss);
     ensureHeader_(sheet);
 
     sheet.appendRow([
@@ -48,33 +52,71 @@ function doPost(e) {
       data.notes || '',
     ]);
 
-    return json_({ ok: true });
+    const row = sheet.getLastRow();
+    return json_({
+      ok: true,
+      spreadsheetId: ss.getId(),
+      spreadsheetName: ss.getName(),
+      sheetName: sheet.getName(),
+      row: row,
+      url: ss.getUrl(),
+    });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
   }
 }
 
 function doGet() {
-  return json_({
-    ok: true,
-    message: 'Estimate sheet webhook is running.',
-    spreadsheetId: CONFIG.SPREADSHEET_ID || '(bound spreadsheet)',
-    sheet: CONFIG.SHEET_NAME,
-  });
+  try {
+    const ss = getSpreadsheet_();
+    const sheet = getTargetSheet_(ss);
+    return json_({
+      ok: true,
+      message: 'Estimate sheet webhook is running.',
+      spreadsheetId: ss.getId(),
+      spreadsheetName: ss.getName(),
+      sheetName: sheet.getName(),
+      url: ss.getUrl(),
+      lastRow: sheet.getLastRow(),
+    });
+  } catch (err) {
+    return json_({ ok: false, error: String(err) });
+  }
 }
 
-function getTargetSheet_() {
-  const ss = CONFIG.SPREADSHEET_ID
-    ? SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID)
-    : SpreadsheetApp.getActiveSpreadsheet();
-
-  if (!ss) {
-    throw new Error('No spreadsheet available. Set CONFIG.SPREADSHEET_ID or bind this script to a sheet.');
+function getSpreadsheet_() {
+  // Prefer the spreadsheet this container-bound script lives in.
+  const active = SpreadsheetApp.getActiveSpreadsheet();
+  if (active && !CONFIG.SPREADSHEET_ID) {
+    return active;
   }
 
-  let sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  if (CONFIG.SPREADSHEET_ID) {
+    return SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+  }
+
+  if (active) {
+    return active;
+  }
+
+  throw new Error(
+    'No spreadsheet found. Open Apps Script from the target Google Sheet (Extensions → Apps Script), or set CONFIG.SPREADSHEET_ID.',
+  );
+}
+
+function getTargetSheet_(ss) {
+  if (CONFIG.SHEET_NAME) {
+    let sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(CONFIG.SHEET_NAME);
+    }
+    return sheet;
+  }
+
+  // Default: first tab (what people usually look at)
+  const sheet = ss.getSheets()[0];
   if (!sheet) {
-    sheet = ss.insertSheet(CONFIG.SHEET_NAME);
+    throw new Error('Spreadsheet has no sheets.');
   }
   return sheet;
 }
